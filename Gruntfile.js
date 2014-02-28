@@ -1,5 +1,5 @@
 /*global module:false*/
-var coptions =
+var options =
     module.exports = function (grunt) {
 
         //require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
@@ -63,6 +63,14 @@ var coptions =
                         spawn: false,
                     }
                 }
+            },
+            jshint:{
+                files:['src/main/js/counter.js'],
+                options:{
+                    jshintrc:true
+                }
+
+
             }
 
         });
@@ -73,9 +81,12 @@ var coptions =
         grunt.loadNpmTasks('grunt-mkdir');
         grunt.loadNpmTasks('grunt-mocha');
         grunt.loadNpmTasks('grunt-contrib-watch');
+        grunt.loadNpmTasks('grunt-contrib-jshint');
 
 
         // Default task.
         grunt.registerTask('test', ['clean:all', 'mkdir', 'copy:test', 'mocha:server','watch']);
+        grunt.registerTask('default', ['jshint']);
+
 
     };

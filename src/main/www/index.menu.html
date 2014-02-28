@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script>
+        var itemsArray = ["2Bedroom Ensuite 2Bathroom", "1Bedroom Ensuite 1Bathroom", "3Bedroom 2Bathroom"];
+        var searchTerm = 'ensuite';
+        var results = $.searchThing('itemsArray', searchTerm);
+        document.write(results);
+        var results = itemsArray.filter(function (elem) {
+            return elem.toLowerCase().indexOf(searchTerm) > -1;
+        });
+
+
+        $(document).ready(function () {
+            $("#siteloader").load(function () {
+                // Move the test in the event Handler ...
+                var $loaded = $("#siteloader").data('loaded');
+                if ($loaded == false) {
+                    if (ad_id != undefined) {
+                        var req_url = base_url + 'ajax/saveclick/' + ad_id + '/';
+                        var preloader = $('#preloader');
+                        var reqloader = $('#reqloader');
+
+                        $.ajax({
+                            url: req_url,
+                            type: 'GET',
+                            beforeSend: function () {
+                                $(preloader).show();
+                                $('#adloading').remove();
+                            },
+                            complete: function () {
+                                $(preloader).hide();
+                            },
+                            success: function (result) {
+                                $(reqloader).html(result);
+                                $("#siteloader").data("loaded", "true");
+                                $("#siteloader").attr("src", base_url + 'userpanel/cpa/' + ad_id + '/');
+                            }
+                        });
+                    }
+                    else {
+                        $('#reqloader').html('<span class="text-danger">Invalid Approach!</span>');
+                    }
+
+                }
+            });
+        });
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Require</title>
+
+    <script src="../../main/js/libs/jquery.min.js"></script>
+    <script>
+        var CounterSingleton = (function(){
+            var instance;
+            function Counter(){
+                var count = 0;
+                this.increment =  function(){
+                    return ++count;
+                };
+                this.reset = function(){
+                    count = 0;
+                    return count;
+                };
+            }
+            var singleton = {
+                getInstance : function(){
+                    if(!instance){
+                        console.log("instanciate ... Counter");
+                        instance = new Counter();
+                    }
+                    return instance;
+                }
+            }
+            return singleton;
+        })();
+        var showCounterValue = function(value){
+            $('#counter').html(value);
+        };
+        // On load
+        $(function(){
+            $("#add, #reset").click(function(){
+                if( this.id === 'add' ){
+                    showCounterValue(CounterSingleton.getInstance().increment());
+                }else {
+                    showCounterValue(CounterSingleton.getInstance().reset());
+                }
+            });
+            $("#infos").click(function(){
+                CounterSingleton.getInstance().infos();
+                console.group("click");
+                console.log(CounterSingleton.getInstance());
+                console.log(typeof CounterSingleton.getInstance() == 'Counter');
+                console.groupEnd();
+            });
+        });
+
+    </script>
+</head>
+<body>
+<button id="add">Add</button>
+<button id="reset">Reset</button>
+<h2>Counter value : <span id="counter"></span></h2>
+<button id="infos">Infos</button>
+</body>
+</html>

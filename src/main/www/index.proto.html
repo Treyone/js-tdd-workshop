@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script>
+
+        console.clear();
+        var EtreVivant = {
+            canWalk : false,
+            apprendAMarcher : function(){
+                this.canWalk = true;
+            }
+        };
+
+        var Animal = function(nom){
+            this.nom = nom;
+            this.childs = [];
+        }
+        Animal.prototype = EtreVivant;
+        Animal.prototype.constructor = Animal;
+        Animal.prototype.aUnEnfant = function(){
+            console.log(this.constructor.toString());
+            var bebe = new this.constructor("Child of : "+this.nom);
+            this.childs.push(bebe);
+            return bebe;
+        }
+        Animal.prototype.toString = function(){
+            return "[Animal : "+this.nom+"]";
+        }
+        Animal.prototype.saitMarcher = function(){
+            return this.canWalk;
+        }
+        var Chat = function (nom){
+            this.nom = nom;
+        }
+
+        Chat.prototype = new Animal(); // Héritage, Chat est un Animal
+        Chat.prototype.constructor = Chat; // mais son constructeur est chat
+        Chat.prototype.toString = function(){
+            return "[Chat : "+this.nom+"]";
+        }
+
+
+        var animal = new Animal("Elephpant");
+        var mycat = new Chat('Felix');
+        var babyCat = mycat.aUnEnfant();
+        console.log("BabyCat sait marcher ? " + babyCat.saitMarcher() );
+        babyCat.apprendAMarcher();
+        console.log("BabyCat sait marcher ? " + babyCat.saitMarcher() );
+        console.log(babyCat);
+        var ev = new EtreVivant();
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

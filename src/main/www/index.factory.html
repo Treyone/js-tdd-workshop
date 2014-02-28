@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Require</title>
+
+    <script src="../../main/js/libs/jquery.min.js"></script>
+    <script>
+function Car(options) {
+    console.log('create a car');
+    this.doors = options.doors;
+    this.color = options.color;
+    this.brand = options.brand;
+}
+
+function Plane(options) {
+    console.log('create a plane');
+    this.doors = options.doors;
+    this.color = options.color;
+    this.brand = options.brand;
+}
+
+
+var Vehicle = {
+    defaultVehicle : Car,
+    factory: function (type, options){
+        console.log(typeof type);
+        if (typeof type === 'function') {
+            return new type(options);
+        } else {
+            return new this.defaultVehicle(options);
+        }
+    }
+};
+
+
+        $(function () {
+            $('#add').click(function () {
+                Vehicle.factory(Plane, {
+                    doors:2,
+                    color:'blue',
+                    brand:'Renault'
+                });
+                $('#value').html("r");
+            });
+        });
+    </script>
+</head>
+<body>
+<select id="animaltype">
+    <option value="cat">Cat</option>
+    <option value="bird">Bird</option>
+    <option value="human">Human</option>
+</select>
+<button id="add">Add</button>
+<button id="reset">Reset</button>
+<h2>Counter value : <span id="value"></span></h2>
+<button id="infos">Infos</button>
+</body>
+</html>

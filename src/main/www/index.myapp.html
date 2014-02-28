@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Require</title>
+    <script src="../../main/js/libs/jquery.min.js"></script>
+    <script src="../../main/js/myapp.js"></script>
+    <script>
+        $(function(){
+
+            $('#getAll').click(function(){
+                MyAPP.Models.Task.getAll(function(datas){
+                    console.log(datas);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<button id="getAll">GET ALL</button>
+
+</body>
+</html>

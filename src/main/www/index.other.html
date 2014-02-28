@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Require</title>
+
+
+    <script>
+        var MYLIB = (function () {
+            return {
+                aMethod: function () {
+                    console.log("a");
+                }
+            }
+        })();
+        (function (lib) {
+
+            lib.anotherMethod = function () {
+                console.log("lib.another");
+            };
+
+        })(MYLIB);
+
+
+        // dans le fichier mylib.extends.js
+        MYLIB.sub = (function (lib) {
+                        return {
+                            anotherMethod: function () {
+                                console.log("lib.sub..another");
+                            }
+                        }
+        })();
+
+        var Singleton = (function () {
+            var instantiated;
+
+            function init() {
+                // L'objet a créer est là !
+                return {
+                    publicMethod: function(){
+                        console.log( 'hello world' );
+                    },
+                    publicProperty: 'test'
+                };
+            }
+            return {
+                getInstance:
+                        function(){
+                            if ( !instantiated ){
+                                instantiated = init();
+                            }
+                            return instantiated;
+                        }
+            };
+        })();
+
+
+                MYLIB.anotherMethod();
+                MYLIB.sub.anotherMethod();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

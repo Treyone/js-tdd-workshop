@@ -1,3 +1,11 @@
+describe("MyAPP", function(){
+
+    it("should exist in global Scope", function(){
+       expect(MyAPP).to.be.defined;
+    });
+
+});
+
 describe("Tasks", function () {
     it('should be able to retreive number of tasks', function () {
         expect(TasksThe.size()).to.equal(0);
