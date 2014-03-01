@@ -4,5 +4,6 @@
 .bower-*/
 .idea/
 .tmp
+.tmp/
 node_modules/
 bower_components/

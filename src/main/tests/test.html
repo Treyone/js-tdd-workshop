@@ -5,35 +5,34 @@
     <title>Mocha Spec Runner</title>
     <link rel="stylesheet" href="libs/mocha.css">
 
-<div id="mocha"></div>
-
+    <div id="mocha"></div>
+    <!-- Tests Runner Setup -->
     <script src="libs/chai.js"></script>
-<script src="libs/mocha.js"></script>
-<script>
+    <script src="libs/mocha.js"></script>
+    <script>
 
-    mocha.setup('bdd');
-    mocha.reporter('html');
+        mocha.setup('bdd');
+        mocha.reporter('html');
 
-    var expect = chai.expect;
+        /* setting up chai */
+        var expect = chai.expect;
+    </script>
 
-</script>
-<!-- assertion framework -->
 
-<script>
-</script>
+    <!-- include source files here... -->
+    <script src="js/main.js"></script>
 
-<!-- include source files here... -->
-<script src="js/tasks.js"></script>
-
-<!-- include spec files here... -->
-<script src="tests/tasks.js"></script>
+    <!-- include spec files here... -->
+    <script src="tests/suite.js"></script>
 </head>
 <body>
 <script>
     if (navigator.userAgent.indexOf('PhantomJS') < 0) {
+        // If this page is shown in browser, run mocha runner
         mocha.run();
-    }
 
+    }
+    // Else runner is launched via PhantomJS runner
 </script>
 </body>
 </html>
