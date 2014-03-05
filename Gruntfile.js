@@ -41,7 +41,7 @@ module.exports = function (grunt) {
             test: {
                 files: [
                     {expand: true,
-                        src: 'src/main/tests/test.html', dest: '<%= myConfig.tmp_dir %>/',
+                        src: 'src/main/tests/*.html', dest: '<%= myConfig.tmp_dir %>/',
                         filter: 'isFile',
                         flatten: true
                     },
@@ -88,7 +88,7 @@ module.exports = function (grunt) {
             server: {
                 options: {
                     run: true,
-                    urls: [ 'http://localhost:9001/test.html' ]
+                    urls: [ 'http://localhost:9001/tests.webshop.html' ]
                 }
             }
         },
@@ -135,5 +135,5 @@ module.exports = function (grunt) {
      * run the static server, then run tests
      * watch for filesystem modification and run tests again
      */
-    grunt.registerTask('dev', ['jshint', 'test', 'watch']);
+    grunt.registerTask('dev', ['test', 'watch']);
 };
