@@ -10,11 +10,11 @@
 
     if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
         // NodeJS
-        module.exports = WebShop;
+        module.exports = WebShop();
     } else if (typeof define === 'function' && define.amd) {
         // AMD
         define(function () {
-            return WebShop;
+            return WebShop()
         });
     } else {
         // Other environment (usually <script> tag)
